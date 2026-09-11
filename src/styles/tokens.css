@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Tokens — ArthoVista design system
+   Colors derived from the official ArthoVista logo (SVG fills):
+   orange #F75D01 / #FC7603, blue #024CB5 / #035DC9,
+   green #339B21 / #199124, cream / warm-white surfaces, deep blue ink.
+   ========================================================================== */
+
+:root {
+  /* --- Brand color system (logo-derived) --- */
+  --brand-orange: #F75D01;
+  --brand-orange-bright: #FD8002;
+  --brand-orange-deep: #C54800; /* AA-safe for white text (4.9:1) */
+  --brand-orange-ink: #B84800;  /* AA-safe for text on white (5.7:1) */
+  --brand-blue: #024CB5;
+  --brand-blue-bright: #035DC9;
+  --brand-blue-deep: #0C3B94;
+  --brand-green: #339B21;
+  --brand-green-deep: #199124;
+  --brand-teal: #078EA8;
+  --brand-cream: #FFF4D5;
+  --brand-cream-soft: #FEF3DF;
+
+  /* --- Semantic color roles --- */
+  --color-primary: var(--brand-blue);
+  --color-primary-hover: var(--brand-blue-deep);
+  --color-accent: var(--brand-orange-deep);
+  --color-accent-hover: #9C3E00;
+  --color-success: var(--brand-green-deep);
+  --color-danger: #C22B17;
+  --color-focus: var(--brand-blue);
+
+  --text-strong: #14233C;
+  --text-body: #3D4A66;
+  --text-muted: #576280;
+  --text-inverse: #FFFFFF;
+
+  --surface-page: #FDFBF6;
+  --surface-card: #FFFFFF;
+  --surface-subtle: #F6F2EA;
+  --surface-cream: #FFF6E3;
+  --surface-inverse: #0F1B33;
+
+  --border-subtle: #E7E1D6;
+  --border-strong: #C9C2B4;
+  --border-accent: #F3D9A8;
+
+  /* --- Typography scale (fluid) --- */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-md: 1.06rem;
+  --text-lg: 1.16rem;
+
+  --display-1: clamp(2.2rem, 5.4vw, 3.6rem);
+  --display-2: clamp(1.8rem, 4vw, 2.6rem);
+  --display-3: 1.15rem;
+
+  /* --- Spacing scale --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --section-pad: clamp(3.5rem, 8vw, 6rem);
+
+  /* --- Layout --- */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 4vw, 2rem);
+  --grid-gap: 1.25rem;
+
+  /* --- Radii --- */
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+
+  /* --- Elevation --- */
+  --shadow-sm: 0 1px 2px rgba(20, 35, 60, 0.06), 0 4px 14px rgba(20, 35, 60, 0.06);
+  --shadow-md: 0 8px 24px rgba(20, 35, 60, 0.1);
+  --shadow-lg: 0 24px 60px rgba(20, 35, 60, 0.14);
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --dur-fast: 0.15s;
+  --dur-med: 0.25s;
+
+  /* --- Breakpoints (documentation only; media queries use literal px,
+         defined once per project so all components stay in sync) ---
+         --bp-sm  640px  small tablets
+         --bp-md  900px  small laptops / landscape tablets
+         --bp-lg  1200px desktops                                             */
+  --bp-sm: 640px;
+  --bp-md: 900px;
+  --bp-lg: 1200px;
+}

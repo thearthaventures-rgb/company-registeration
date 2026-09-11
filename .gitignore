@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Runtime data (leads DB + legacy JSONL) — never commit customer data
+data/
+
+# Local overrides (real contact details, analytics IDs)
+site.config.local.js
+
+# Logs & OS cruft
+*.log
+.DS_Store
+Thumbs.db

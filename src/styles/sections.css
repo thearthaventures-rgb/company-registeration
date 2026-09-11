@@ -1,0 +1,366 @@
+/* ==========================================================================
+   Sections — trust strip, CTA band, callout, check lists, process,
+   estimate band, FAQ
+   ========================================================================== */
+
+/* Trust strip ----------------------------------------------------------------- */
+.trust-strip {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding-block: 1.6rem;
+}
+
+.trust-item {
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.35);
+}
+
+.trust-title {
+  font-weight: 700;
+  margin: 0 0 0.1rem;
+}
+
+.trust-item p:last-child {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* CTA band ---------------------------------------------------------------------- */
+.cta-band {
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, rgba(247, 93, 1, 0.1), rgba(2, 76, 181, 0.08)), var(--surface-cream);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.cta-band-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 0.15rem;
+}
+
+.cta-band-text span {
+  color: var(--text-body);
+}
+
+/* Callout ------------------------------------------------------------------------ */
+.callout {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 0.85rem;
+  padding: 1.4rem 1.5rem;
+  background: var(--surface-cream);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  color: var(--text-strong);
+}
+
+.callout svg {
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--brand-orange-deep);
+}
+
+.callout p {
+  margin: 0;
+}
+
+/* Check lists -------------------------------------------------------------------- */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 2.1rem;
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: rgba(51, 155, 33, 0.14);
+  color: var(--color-success);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.check-list li strong {
+  color: var(--text-strong);
+}
+
+/* Process ------------------------------------------------------------------------- */
+.process {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.process-step {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.5rem 1.5rem 5.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.step-num {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.35rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--brand-orange-deep);
+}
+
+.process-step h3 {
+  font-size: 1.12rem;
+  margin-bottom: 0.3rem;
+}
+
+.process-step p {
+  margin: 0;
+  color: var(--text-body);
+}
+
+/* Estimate band --------------------------------------------------------------------- */
+.estimate {
+  background: linear-gradient(120deg, var(--brand-blue-deep), var(--color-primary));
+  color: #fff;
+}
+
+.estimate-inner {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.estimate h2 {
+  color: #fff;
+  font-size: var(--display-2);
+}
+
+.estimate .eyebrow {
+  color: #ffc9a3;
+}
+
+.estimate-copy p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.estimate-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 1.4rem 0 0;
+}
+
+.estimate-chips li {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.estimate .fine-print {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.estimate-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.estimate-cta p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Documents (typically vs case-dependent) ---------------------------------------- */
+.doc-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.doc-group h3 {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  color: var(--brand-blue-deep);
+}
+
+/* FAQ -------------------------------------------------------------------------------- */
+.faq {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 48rem;
+}
+
+.faq-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--text-strong);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--brand-orange-deep);
+  line-height: 1;
+  transition: transform var(--dur-fast) var(--ease);
+  flex: none;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item[open] summary {
+  color: var(--color-primary);
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 1.3rem 1.2rem;
+  color: var(--text-body);
+}
+
+/* Stats strip --------------------------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  padding-block: 2.2rem 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-num {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.1;
+  color: #fff;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.stat-footnote {
+  margin: 0.4rem 0 1.6rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Stage band (capital-by-stage) ------------------------------------------------------ */
+.stage-band {
+  margin-top: 2.5rem;
+  background: var(--surface-cream);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.stage-band h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1.1rem;
+}
+
+.stages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.stages li {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.stage-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brand-orange-deep);
+  letter-spacing: 0.06em;
+}
+
+.stages h4 {
+  margin: 0.15rem 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+.stages p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}

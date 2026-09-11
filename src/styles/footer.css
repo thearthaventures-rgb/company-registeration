@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--surface-inverse);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 0 2rem;
+}
+
+.footer-brand .brand {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.footer-col h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ffc9a3;
+  margin-bottom: 0.9rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-col p {
+  font-size: 0.93rem;
+  margin-bottom: 1rem;
+}
+
+.footer-col .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-col .btn-outline:hover {
+  background: #fff;
+  color: #0f1b33;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-block: 1.4rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-bottom .disclaimer {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.4rem;
+}
+
+/* Direct contact buttons (rendered only when site.config.contact is set) */
+.direct-contact {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.direct-contact .btn {
+  justify-content: flex-start;
+  padding-inline: 1.1rem;
+}
+
+/* Presence (office locations) -------------------------------------------------------- */
+.presence {
+  list-style: none;
+  padding: 0;
+  margin: 1.2rem 0 0;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+
+.presence strong {
+  color: var(--text-strong);
+}

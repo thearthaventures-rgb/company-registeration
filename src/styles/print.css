@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Print — clean paper output
+   ========================================================================== */
+
+@media print {
+  .site-header,
+  .nav-toggle,
+  .site-footer .btn {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .section {
+    padding-block: 1.5rem;
+  }
+
+  .tile,
+  .doc-sheet,
+  .form-card {
+    box-shadow: none;
+  }
+
+  a {
+    color: var(--text-strong);
+    text-decoration: underline;
+  }
+}

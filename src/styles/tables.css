@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Tables — comparison + generic data tables
+   ========================================================================== */
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  min-width: 620px;
+}
+
+th,
+td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+
+tbody th {
+  background: var(--surface-subtle);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td,
+tbody tr:last-child th {
+  border-bottom: 0;
+}

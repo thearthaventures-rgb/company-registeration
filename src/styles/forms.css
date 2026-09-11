@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Forms — lead form, fields, validation, status
+   ========================================================================== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.form-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.lead-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.field .optional {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field select,
+.field textarea {
+  font: inherit;
+  color: var(--text-strong);
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: #fff;
+  width: 100%;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(2, 76, 181, 0.18);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.field-hint {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+.field-hint[hidden] {
+  display: none;
+}
+
+.field-check {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+.field-check input {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: none;
+  margin-top: 0.15rem;
+  accent-color: var(--brand-orange-deep);
+}
+
+.field-check label {
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: var(--text-body);
+}
+
+/* Honeypot: visually hidden but left in the DOM for bots */
+.hp-field {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+.privacy-note {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  background: rgba(2, 76, 181, 0.06);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+
+.privacy-note p {
+  margin: 0;
+}
+
+.privacy-note strong {
+  color: var(--text-strong);
+}
+
+.form-status {
+  margin-top: 1.1rem;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  font-weight: 600;
+}
+
+.form-status[hidden] {
+  display: none;
+}
+
+.form-status.success {
+  background: rgba(51, 155, 33, 0.12);
+  color: var(--color-success);
+  border: 1px solid rgba(51, 155, 33, 0.35);
+}
+
+.form-status.error {
+  background: rgba(194, 43, 23, 0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(194, 43, 23, 0.35);
+}

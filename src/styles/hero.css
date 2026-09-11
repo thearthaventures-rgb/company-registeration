@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  background:
+    radial-gradient(42rem 30rem at 85% -10%, rgba(253, 128, 2, 0.1), transparent 60%),
+    radial-gradient(36rem 28rem at -10% 110%, rgba(3, 92, 201, 0.08), transparent 60%),
+    linear-gradient(180deg, var(--surface-page), #fff);
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 6rem);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: var(--display-1);
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  font-size: clamp(1.06rem, 2vw, 1.2rem);
+  color: var(--text-body);
+  max-width: 36rem;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 1.7rem 0 1.4rem;
+}
+
+.hero-assurances {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-assurances li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-body);
+}
+
+.hero-assurances li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  color: #fff;
+  background: var(--color-success);
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  line-height: 1.05rem;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 0.18rem;
+}
+
+.hero-visual {
+  position: relative;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+
+.hero-emblem {
+  position: relative;
+  line-height: 0;
+}
+
+.hero-emblem img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  background: #fdfdfd;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.75;
+}
+
+.orb-blue {
+  width: 64px;
+  height: 64px;
+  background: rgba(2, 76, 181, 0.18);
+  top: 6%;
+  right: -8%;
+}
+
+.orb-green {
+  width: 48px;
+  height: 48px;
+  background: rgba(51, 155, 33, 0.2);
+  bottom: 18%;
+  left: -10%;
+}
+
+.orb-orange {
+  width: 40px;
+  height: 40px;
+  background: rgba(247, 93, 1, 0.22);
+  top: 20%;
+  left: -6%;
+}
+
+.chip {
+  position: absolute;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+}
+
+.chip-blue {
+  top: -6%;
+  right: 4%;
+  color: var(--color-primary);
+}
+
+.chip-green {
+  bottom: 8%;
+  right: -4%;
+  color: var(--color-success);
+}
+
+.chip-orange {
+  bottom: 22%;
+  left: -4%;
+  color: var(--brand-orange-deep);
+}
+
+.chip-cream {
+  top: 4%;
+  left: -8%;
+  color: var(--brand-orange-ink);
+  background: var(--brand-cream);
+}

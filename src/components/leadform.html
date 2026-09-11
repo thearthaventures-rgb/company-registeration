@@ -1,0 +1,104 @@
+<!-- Contact / lead form -->
+<section class="section section-alt" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow accent">Get started</p>
+      <h2>Schedule a Business &amp; Capital Diagnostic</h2>
+      <p class="section-lede">Share a few details and a consultant will reach out to understand where your business is today — and map the opportunities relevant to it: funding, grants, foundations, compliance and growth.</p>
+
+      <div class="steps-card">
+        <h3>What happens next</h3>
+        <ol class="next-steps">
+          <li><span>1</span> We review your enquiry.</li>
+          <li><span>2</span> A consultant reaches out during business hours.</li>
+          <li><span>3</span> You receive tailored recommendations and a clear next-steps checklist.</li>
+        </ol>
+      </div>
+
+      <p class="fine-print">Prefer to talk first? Request a call using the form and a consultant will get in touch.</p>
+
+      <div class="privacy-note">
+        <p><strong>Privacy-first handling.</strong> Your details are used only to respond to your enquiry — we do not sell them, and we handle them in line with applicable privacy law, including India&rsquo;s DPDP Act, 2023.</p>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form id="enquiry-form" class="lead-form" novalidate>
+        <noscript>
+          <p class="form-error" role="alert">Please enable JavaScript to submit this form, or contact us via the details on the page.</p>
+        </noscript>
+
+        <div class="field">
+          <label for="f-fullname">Full name <span aria-hidden="true">*</span></label>
+          <input id="f-fullname" name="fullName" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-fullname-hint">
+          <p id="f-fullname-hint" class="field-hint" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-mobile">Mobile number <span aria-hidden="true">*</span></label>
+          <input id="f-mobile" name="mobile" type="tel" autocomplete="tel" required inputmode="tel" aria-describedby="f-mobile-hint">
+          <p id="f-mobile-hint" class="field-hint" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email address <span aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint">
+          <p id="f-email-hint" class="field-hint" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-stage">Where is your business heading now?</label>
+          <select id="f-stage" name="businessStage">
+            <option value="">Select your stage…</option>
+            <option>Seed — early-stage idea or validation</option>
+            <option>Early — launched, gaining traction</option>
+            <option>Growth — scaling operations</option>
+            <option>Scale — established, institutional-ready</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-structure">Entity structure (if any)</label>
+          <select id="f-structure" name="structure">
+            <option value="">Comparing / not sure yet</option>
+            <option>Private Limited Company</option>
+            <option>Limited Liability Partnership (LLP)</option>
+            <option>One Person Company (OPC)</option>
+            <option>Section 8 / Non-profit</option>
+            <option>Partnership Firm</option>
+            <option>Sole Proprietorship</option>
+            <option>Unregistered / not applicable</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-business">Business / enterprise name <span class="optional">(optional)</span></label>
+          <input id="f-business" name="businessName" type="text" autocomplete="organization" maxlength="120">
+        </div>
+
+        <div class="field">
+          <label for="f-message">What would you like to discuss? <span class="optional">(optional)</span></label>
+          <textarea id="f-message" name="message" rows="4" maxlength="2000" aria-describedby="f-message-hint"></textarea>
+          <p id="f-message-hint" class="field-hint" hidden></p>
+        </div>
+
+        <!-- Honeypot (hidden from humans) -->
+        <div class="field hp-field" aria-hidden="true">
+          <label for="f-website">Company website</label>
+          <input id="f-website" name="companyWebsite" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field field-check">
+          <input id="f-consent" name="consent" type="checkbox" required>
+          <label for="f-consent">I agree to be contacted about this enquiry. We use your details only to respond, and handle them in line with applicable privacy law. <span aria-hidden="true">*</span></label>
+        </div>
+
+        <button class="btn btn-accent btn-xl" type="submit" data-track="leadform_submit_btn">Request a Diagnostic</button>
+        <p class="form-note">Submitting indicates you agree to our contact and privacy handling described above.</p>
+      </form>
+
+      <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+    </div>
+  </div>
+</section>

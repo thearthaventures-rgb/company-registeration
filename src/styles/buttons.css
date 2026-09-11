@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Buttons — standardized CTA system
+   CTA hierarchy (USE CONSISTENTLY):
+     1. .btn-primary  primary conversion (one per viewport)
+     2. .btn-accent   high-emphasis conversion
+     3. .btn-outline  secondary action
+     4. .btn-ghost    tertiary / inline action
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  line-height: 1;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 44px; /* touch target */
+  transition: background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variants ----------------------------------------------------------------- */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--text-inverse);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-strong);
+  border-color: var(--text-strong);
+}
+
+.btn-outline:hover {
+  background: var(--text-strong);
+  color: var(--text-inverse);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  padding-inline: 0.6rem;
+}
+
+.btn-ghost:hover {
+  background: rgba(2, 76, 181, 0.07);
+}
+
+/* Sizes --------------------------------------------------------------------- */
+.btn-sm {
+  padding: 0.65rem 1.1rem;
+  font-size: var(--text-sm);
+  min-height: 40px;
+}
+
+.btn-lg {
+  padding: 1.05rem 1.8rem;
+  font-size: var(--text-md);
+}
+
+.btn-xl {
+  width: 100%;
+  padding: 1.15rem 1.8rem;
+  font-size: 1.1rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Loading spinner ------------------------------------------------------------ */
+.btn .spinner {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

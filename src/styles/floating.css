@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Floating CTA
+   ========================================================================== */
+
+.floating-cta {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+}
+
+.floating-cta:hover {
+  background: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+/* Hide floating CTA on print to avoid ink bleed */
+@media print {
+  .floating-cta {
+    display: none !important;
+  }
+}

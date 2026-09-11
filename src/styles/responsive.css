@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Responsive — mobile-first breakpoints
+   Breakpoints (see tokens.css):
+     max-width 899  mobile / tablet portrait (nav collapse)
+     min-width 640  --bp-sm
+     min-width 900  --bp-md
+     min-width 1200 --bp-lg
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .card-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .check-list-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-band {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .estimate-inner {
+    grid-template-columns: 1.4fr 0.8fr;
+    align-items: end;
+  }
+
+  .process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .doc-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .card-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1.05fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  }
+
+  .process {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  #ecosystem .process,
+  #methodology .process {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-step {
+    padding: 1.6rem 1.4rem;
+  }
+
+  .step-num {
+    position: static;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .process {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #ecosystem .process,
+  #methodology .process {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stages {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-visual {
+    max-width: 22rem;
+  }
+
+  .chip {
+    display: none;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .table-wrap {
+    margin-inline: -1rem;
+    border-radius: 0;
+    border-inline: 0;
+  }
+}
