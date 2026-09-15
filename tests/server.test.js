@@ -49,7 +49,7 @@ test("GET / serves the landing page", async () => {
   assert.match(res.headers.get("content-type") || "", /text\/html/);
   const html = await res.text();
   assert.match(html, /ArthoVista/);
-  assert.match(html, /id="enquiry-form"/);
+  assert.match(html, /id="leadform"/);
 });
 
 test("unknown path returns 404", async () => {
@@ -86,6 +86,17 @@ test("invalid enquiry returns 422 with field errors", async () => {
   for (const key of ["fullName", "mobile", "email", "consent"]) {
     assert.ok(body.fields[key], `expected field error for ${key}`);
   }
+});
+
+test("email is optional when omitted or empty", async () => {
+  const res = await fetch(`${base}/api/enquiry`, {
+    method: "POST",
+    headers: HJSON,
+    body: JSON.stringify({ ...validPayload(), email: "" }),
+  });
+  assert.equal(res.status, 201);
+  const body = await res.json();
+  assert.ok(body.id);
 });
 
 test("consent is mandatory", async () => {

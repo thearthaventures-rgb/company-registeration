@@ -17,9 +17,77 @@
   background: var(--surface-subtle);
 }
 
+.section-muted {
+  background: var(--surface-subtle);
+}
+
+.section-tint {
+  background: linear-gradient(180deg, var(--surface-cream), var(--surface-card));
+}
+
+.section-dark {
+  background:
+    radial-gradient(42rem 28rem at 110% -10%, rgba(3, 92, 201, 0.28), transparent 60%),
+    radial-gradient(30rem 22rem at -10% 120%, rgba(247, 93, 1, 0.12), transparent 60%),
+    var(--surface-inverse);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-dark h2 {
+  color: #fff;
+}
+
+.section-dark .eyebrow.accent,
+.section-dark .eyebrow.bar {
+  color: #ffc9a3;
+}
+
+.section-dark .eyebrow.bar::before {
+  background: var(--brand-orange-bright);
+}
+
+/* Deep-navy editorial band used mid-page (process section) */
+.section-inverse {
+  background:
+    radial-gradient(42rem 28rem at 112% -10%, rgba(3, 92, 201, 0.26), transparent 60%),
+    linear-gradient(180deg, #0A2A57, #0A2247);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.section-inverse h2 {
+  color: #fff;
+}
+
+.section-inverse .eyebrow.accent,
+.section-inverse .eyebrow.bar {
+  color: #ffc9a3;
+}
+
+.section-inverse .eyebrow.bar::before {
+  background: var(--brand-orange-bright);
+}
+
+.section-inverse .section-lede {
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .section-head {
   max-width: 46rem;
   margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* Section header with an inline header CTA (services) */
+.section-head--row {
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.section-head--row .section-head-inner {
+  max-width: 46rem;
 }
 
 .section-lede {
@@ -38,11 +106,25 @@
 }
 
 .eyebrow.accent {
-  color: var(--brand-orange-ink);
+  color: var(--brand-navy);
+}
+
+.eyebrow.bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--brand-navy);
+}
+
+.eyebrow.bar::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  background: var(--color-accent);
 }
 
 .hl {
-  color: var(--brand-orange-deep);
+  color: var(--brand-navy);
 }
 
 .fine-print {

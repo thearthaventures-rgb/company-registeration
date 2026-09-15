@@ -72,10 +72,10 @@ if (!html) {
   count(/<h1\b/g) === 1 ? pass("exactly one <h1>") : fail(`expected 1 <h1>, got ${count(/<h1\b/g)}`);
 
   const h2 = count(/<h2\b/g);
-  h2 === 13 ? pass(`13 section headings (got ${h2})`) : fail(`expected 13 <h2>, got ${h2}`);
+  h2 === 15 ? pass(`15 section headings (got ${h2})`) : fail(`expected 15 <h2>, got ${h2}`);
 
   const faq = count(/class="faq-item"/g);
-  faq === 7 ? pass(`7 FAQ items (got ${faq})`) : fail(`expected 7 FAQ items, got ${faq}`);
+  faq === 10 ? pass(`10 FAQ items (got ${faq})`) : fail(`expected 10 FAQ items, got ${faq}`);
 
   if (/\[\[[a-z-]+\]\]/i.test(html)) fail("unresolved component markers in HTML");
   if (/%%[A-Z_]+%%/.test(html)) fail("unresolved tokens in HTML");
@@ -89,7 +89,7 @@ if (!html) {
   if (html.includes('name="companyWebsite"')) pass("honeypot field present");
   else fail("honeypot field missing");
 
-  if (count(/id="enquiry-form"/g) === 1) pass("lead form present");
+  if (count(/id="leadform"/g) === 1) pass("lead form present");
   else fail("lead form missing");
 
   if (html.includes('name="consent"')) pass("consent checkbox present");
@@ -109,10 +109,13 @@ if (!html) {
       : fail(`contact links found but not configured in site.config.js (tel:${tel} wa:${wa} mail:${mail})`);
   }
 
-  // data-track events
+  // data-track events (mirror build.js channel logic)
   const tracks = new Set([...html.matchAll(/data-track="([^"]+)"/g)].map((m) => m[1]));
-  const expected = ["hero_cta", "secondary_cta", "capital_cta", "nav_cta", "floating_cta"];
-  if (hasContact) expected.push("phone_click", "whatsapp_click", "email_click");
+  const expected = ["hero_cta", "secondary_cta", "entity_cta", "process_cta", "nav_cta", "leadform_submit_btn"];
+  if (hasWhatsapp) expected.push("whatsapp_click");
+  if (hasPhone) expected.push("phone_click");
+  if (hasEmail) expected.push("email_click");
+  if (!hasWhatsapp && !hasPhone) expected.push("floating_cta");
   const missing = expected.filter((e) => !tracks.has(e));
   tracks.size > 0 ? pass(`${tracks.size} unique data-track events bound`) : fail("no data-track events found");
   if (missing.length) fail(`missing expected events: ${missing.join(", ")}`);

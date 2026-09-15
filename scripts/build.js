@@ -29,6 +29,7 @@ const CSS_ORDER = [
   "cards.css",
   "tables.css",
   "sections.css",
+  "services.css",
   "forms.css",
   "footer.css",
   "floating.css",
@@ -43,15 +44,16 @@ const PAGES = {
     components: [
       "header",
       "hero",
-      "stats",
-      "about",
-      "ecosystem",
-      "capital",
-      "foundations",
-      "methodology",
-      "sectors",
-      "pillars",
+      "truststrip",
+      "entities",
+      "compare",
+      "problem",
       "services",
+      "process",
+      "documents",
+      "afterenquiry",
+      "why",
+      "otherservices",
       "faq", // generated from src/data/faq.js, not a file
       "leadform",
       "footer",
@@ -103,7 +105,7 @@ function faqHtml(items) {
     )
     .join("\n");
   return `<section class="section" id="faq">
-  <div class="container">
+  <div class="faq-wrap">
     <div class="section-head">
       <p class="eyebrow accent">Questions</p>
       <h2>Frequently asked questions</h2>
@@ -138,15 +140,15 @@ function buildJsonLd(cfg, pageUrl, favList) {
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Business Advisory & Capital Access in India",
-    serviceType: "Business Advisory & Capital Access",
+    name: "Company Registration in India",
+    serviceType: "Company Registration",
     provider: { "@type": "Organization", name: "ArthoVista", url: siteRoot },
     areaServed: "India",
     description:
-      "Strategic business advisory and capital-access services for Indian enterprises — business setup & certifications, government funding, grants & CSR, private and institutional capital, compliance, and growth strategy.",
+      "Company registration assistance in India — guidance on choosing the right entity (Private Limited, LLP, OPC, Partnership, Section 8), preparing the required information and documents, and completing the registration process.",
     offers: {
       "@type": "Offer",
-      description: "Business & Capital Diagnostic with tailored funding and readiness recommendations",
+      description: "Company registration consultation and process support",
     },
   };
   const faq = {
@@ -193,7 +195,7 @@ function directContact(cfg) {
   const c = cfg.contact || {};
   if (!dighone(c.phone) && !dighone(c.whatsapp) && !c.email) {
     return [
-      "<p>Prefer to talk directly? Request a callback and a consultant will get in touch during business hours.</p>",
+      "<p>Prefer to talk directly? Request a callback and a registration advisor will get in touch during business hours.</p>",
       '<a class="btn btn-outline btn-sm" href="#contact" data-track="secondary_cta">Request a Callback</a>',
     ].join("\n");
   }
@@ -220,7 +222,7 @@ function floatingCta(cfg) {
   if (downphone(c.phone)) {
     return `<a class="floating-cta" href="tel:${esc(downphone(c.phone))}" aria-label="Call ArthoVista" data-track="phone_click">${icon} Call us</a>`;
   }
-  return `<a class="floating-cta" href="#contact" aria-label="Request a Business and Capital Diagnostic" data-track="floating_cta">${icon} Request a Diagnostic</a>`;
+  return `<a class="floating-cta" href="#contact" aria-label="Start your company registration" data-track="floating_cta">${icon} Start Registration</a>`;
 }
 
 function sitemapXml(pageUrl) {
@@ -264,7 +266,7 @@ export async function build(opts = {}) {
     }
     if (name === "faq" || content === null) {
       if (name === "faq") {
-        content = `<div class="faq">\n${faqHtml(favList)}\n</div>`;
+        content = faqHtml(favList);
       } else {
         throw new Error(`Missing component: ${name}`);
       }

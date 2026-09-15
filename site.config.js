@@ -13,14 +13,14 @@
 
 export default {
   siteUrl: "https://www.arthaventures.co.in/",
-  pagePath: "", // brand homepage
+  pagePath: "", // company-registration landing page
 
-  title: "ArthoVista | Business Advisory & Capital Access in India",
+  title: "Company Registration in India — PVT Ltd, LLP, OPC | ArthoVista",
   description:
-    "ArthoVista is a strategic business advisory and capital-access partner for ambitious Indian enterprises — business foundations, government funding, grants & CSR, private capital, compliance and growth. Build. Fund. Scale.",
+    "Company registration services in India — Private Limited, LLP, OPC and more. Choose the right structure, prepare your documents, and complete incorporation with professional filing support.",
   locale: "en_IN",
 
-  themeColor: "#F75D01",
+  themeColor: "#0A2A57",
 
   analytics: {
     // GA4: set to e.g. "G-XXXXXXXXXX" (public-facing, not a secret) and enabled: true
@@ -32,7 +32,7 @@ export default {
     // Real contact details from company source material. Markup is only
     // rendered when a value is present.
     phone: "+91 98999 02568",
-    whatsapp: "", // e.g. "9198XXXXXXXX" (country code, digits only)
+    whatsapp: "919899902568", // same number as phone per company site (wa.me link)
     email: "",
   },
 };

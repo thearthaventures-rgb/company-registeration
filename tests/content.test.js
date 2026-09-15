@@ -29,8 +29,19 @@ test("no invented contact details by default", async () => {
 
 test("brand positioning present", () => {
   assert.match(html, /ArthoVista/i);
-  assert.match(html, /BUILD\. FUND\. SCALE\.|Build\. Fund\. Scale\./i);
-  assert.match(html, /Business &amp; Capital Diagnostic|Business and Capital Diagnostic|Capital Diagnostic/);
+  assert.match(html, /Company Registration in India|Company registration assistance/i);
+  assert.match(html, /Start Your Company Registration|Talk to a Registration Advisor/i);
+  assert.match(html, /right <span class="hl">legal structure\.?<\/span>|right legal structure/i);
+  assert.match(html, /Start Registration/i);
+});
+
+test("entity types and comparison present", () => {
+  assert.match(html, /Private Limited Company/i);
+  assert.match(html, /Limited Liability Partnership \(LLP\)|LLP/i);
+  assert.match(html, /One Person Company \(OPC\)|OPC/i);
+  assert.match(html, /Partnership|Sole Proprietorship/i);
+  assert.match(html, /<table class="compare"/);
+  assert.match(html, /decision of the authorities/i);
 });
 
 test("no unsupported promise language", () => {
@@ -53,16 +64,17 @@ test("no unsupported promise language", () => {
 test("accessibility hooks present", () => {
   assert.match(html, /class="skip-link"/);
   assert.equal((html.match(/aria-expanded/g) || []).length >= 1, true);
-  assert.match(html, /aria-live="polite"/);
+  assert.match(html, /aria-live="(polite|assertive)"/);
   assert.equal((html.match(/<svg\b/g) || []).length >= 1, true, "decorative icons present with alt handling");
 });
 
 test("form honesty + privacy", () => {
-  assert.match(html, /id="enquiry-form"/);
+  assert.match(html, /id="leadform"/);
   assert.match(html, /name="consent"/);
   assert.match(html, /name="companyWebsite"/);
   assert.match(html, /DPDP/);
-  assert.match(html, /Institutional\"? .*readiness|funding-ready|funding readiness/i);
+  assert.match(html, /no obligation, no pressure|No obligation/i);
+  assert.match(html, /never sold|not sold|never sold|sold to anyone/i);
 });
 
 test("structured data completeness", () => {

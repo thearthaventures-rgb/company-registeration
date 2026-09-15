@@ -12,17 +12,17 @@ test("build assembles a valid page from components", async () => {
     const html = await fs.readFile(path.join(out, "index.html"), "utf8");
 
     assert.equal((html.match(/<h1\b/g) || []).length, 1, "exactly one H1");
-    assert.equal((html.match(/<details class="faq-item">/g) || []).length, 7, "7 FAQ items");
+    assert.equal((html.match(/<details class="faq-item">/g) || []).length, 10, "10 FAQ items");
     assert.ok(!/\[\[[a-z-]+\]\]/i.test(html), "no unresolved component markers");
     assert.ok(!/%%[A-Z_]+%%/.test(html), "no unresolved tokens");
     assert.match(html, /application\/ld\+json/);
     assert.ok(
       /"@type": "FAQPage"/.test(html) &&
-        (html.match(/"@type": "Question"/g) || []).length === 7,
-      "FAQPage JSON-LD mirrors the 7 FAQs"
+        (html.match(/"@type": "Question"/g) || []).length === 10,
+      "FAQPage JSON-LD mirrors the 10 FAQs"
     );
-    assert.match(html, /id="enquiry-form"/);
-    assert.match(html, /BUILD\. FUND\. SCALE\.|Build\. Fund\. Scale\./i);
+    assert.match(html, /id="leadform"/);
+    assert.match(html, /Start Your Company Registration/i);
 
     const css = await fs.readFile(path.join(out, "styles.css"), "utf8");
     assert.match(css, /--brand-orange: #F75D01/);

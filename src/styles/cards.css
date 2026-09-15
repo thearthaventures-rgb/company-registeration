@@ -82,28 +82,29 @@
 
 .tile-metric {
   margin: 0.9rem 0 0;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.tile-metric span {
+  display: block;
   font-weight: 700;
   color: var(--brand-blue-deep);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 0.1rem;
 }
 
 .spec-list.small li {
   font-size: 0.88rem;
 }
 
-.compare {
-  margin-top: 2.5rem;
-}
-
-.compare h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-}
-
 .compare-note {
-  margin: 0 0 1rem;
+  margin: 1.25rem 0 0;
   color: var(--text-body);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  max-width: 55rem;
 }
 
 .spec-list {

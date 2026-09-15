@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Services — service architecture cards, scope panels, check lists
+   ========================================================================== */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+.service-card {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.6rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 1.1rem;
+  row-gap: 0.35rem;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), transparent 65%);
+}
+
+.service-num {
+  grid-row: 1;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  padding-top: 0.3rem;
+}
+
+.service-card h3 {
+  grid-column: 2;
+  font-size: 1.16rem;
+  color: var(--text-strong);
+  margin: 0;
+}
+
+.service-card > p {
+  grid-column: 2;
+  margin: 0.4rem 0 0;
+  color: var(--text-body);
+  font-size: 0.96rem;
+}
+
+.check-list {
+  grid-column: 2;
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0.7rem 0 0;
+  border-top: 1px dashed var(--border-subtle);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-body);
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-success);
+  font-weight: 800;
+}
+
+/* Scope panels ("We handle / You provide") ----------------------------------- */
+.scope-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+.scope-panel {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.7rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.scope-panel h3 {
+  font-size: 1.14rem;
+  margin: 0 0 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.scope-panel h3::before {
+  content: "";
+  width: 1.4rem;
+  height: 2px;
+  background: var(--color-primary);
+  flex: none;
+}
+
+.scope-note {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  background: var(--surface-cream);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+}

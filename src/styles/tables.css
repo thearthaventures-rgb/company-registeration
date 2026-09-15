@@ -2,14 +2,6 @@
    Tables — comparison + generic data tables
    ========================================================================== */
 
-.table-wrap {
-  overflow-x: auto;
-  background: var(--surface-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -37,9 +29,52 @@ tbody th {
   background: var(--surface-subtle);
   font-weight: 600;
   white-space: nowrap;
+  color: var(--text-strong);
 }
 
 tbody tr:last-child td,
 tbody tr:last-child th {
   border-bottom: 0;
+}
+
+/* Entity comparison ------------------------------------------------------------ */
+.compare-wrap {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.compare-scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table.compare {
+  min-width: 720px;
+  margin: 0;
+}
+
+table.compare th,
+table.compare td {
+  font-size: 0.9rem;
+}
+
+table.compare tbody th {
+  background: var(--surface-subtle);
+  width: 15%;
+}
+
+table.compare thead th {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+table.compare tbody th:first-child {
+  border-right: 1px solid var(--border-subtle);
+}
+
+table.compare td {
+  color: var(--text-body);
 }

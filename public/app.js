@@ -11,9 +11,10 @@
    call sites. No credentials live in this file.
 
    Standard events:
-     hero_cta, secondary_cta, structure_cta, estimate_cta, nav_cta,
-     nav_toggle, floating_cta, phone_click, whatsapp_click, email_click,
-     faq_open, leadform_start, leadform_error, leadform_submit, leadform_success
+     hero_cta, secondary_cta, entity_cta, process_cta, nav_cta, nav_toggle,
+     floating_cta, phone_click, whatsapp_click, email_click, faq_open,
+     leadform_start, leadform_error, leadform_submit, leadform_success,
+     leadform_submit_btn
    ========================================================================== */
 
 (() => {
@@ -42,7 +43,7 @@
   const qsa = (sel, root = document) => [...root.querySelectorAll(sel)];
 
   /* ---- Year ------------------------------------------------------------- */
-  const yearEl = qs("#year");
+  const yearEl = qs("#copyright-year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   /* ---- Mobile nav toggle ------------------------------------------------ */
@@ -101,7 +102,7 @@
   });
 
   /* ---- Lead form --------------------------------------------------------- */
-  const form = qs("#enquiry-form");
+  const form = qs("#leadform");
   if (!form) return;
 
   let formStarted = false;
@@ -116,18 +117,20 @@
     { passive: true }
   );
 
-  const statusBox = qs("#form-status");
-  const submitBtn = qs('button[type="submit"]', form);
+  const errorBox = qs("#leadform-error");
+  const successBox = qs("#form-success");
+  const submitBtn = qs("#submit-btn");
   const originalBtnHTML = submitBtn ? submitBtn.innerHTML : "";
 
-  const setStatus = (type, message) => {
-    if (!statusBox) return;
-    statusBox.className = "form-status " + type;
-    statusBox.textContent = message;
-    statusBox.hidden = false;
+  const setStatus = (type, target, message) => {
+    if (!target) return;
+    target.textContent = message;
+    target.hidden = false;
+    if (type === "error") target.setAttribute("role", "alert");
   };
   const clearStatus = () => {
-    if (statusBox) statusBox.hidden = true;
+    if (errorBox) errorBox.hidden = true;
+    if (successBox) successBox.hidden = true;
   };
 
   const stripTags = (val) => val.replace(/<[^>]*>/g, "").trim();
@@ -148,24 +151,26 @@
 
   const validators = {
     fullName: (v) => (v.length < 2 ? "Please enter your full name." : ""),
-    mobile: (v) => (/^[0-9+\-()\s]{8,16}$/.test(v) ? "" : "Please enter a valid mobile number."),
+    mobile: (v) => (/^[6-9][0-9]{9}$/.test(v) ? "" : "Please enter a valid 10-digit Indian mobile number."),
     email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? "" : "Please enter a valid email address."),
     message: (v) => (v.length > 2000 ? "Message is too long." : ""),
   };
 
-  qsa("input, textarea, select", form).forEach((field) => {
-    field.addEventListener("blur", () => {
-      if (!field.value) return;
+  form.addEventListener("blur", (e) => {
+    const field = e.target;
+    if (!field || !field.name || !field.value) return;
+    if (field.hasAttribute("required")) {
       const err = validators[field.name] ? validators[field.name](field.value.trim()) : "";
-      if (err && field.hasAttribute("required")) setFieldError(field, err);
+      if (err) setFieldError(field, err);
       else clearFieldError(field);
-    });
-    field.addEventListener("input", () => {
-      if (field.getAttribute("aria-invalid") === "true") clearFieldError(field);
-    });
-  });
+    }
+  }, true);
+  form.addEventListener("input", (e) => {
+    const field = e.target;
+    if (field && field.getAttribute("aria-invalid") === "true") clearFieldError(field);
+  }, true);
 
-  const consent = qs("#f-consent");
+  const consent = qs("#consent");
 
   const validate = () => {
     const data = new FormData(form);
@@ -185,24 +190,13 @@
       }
     });
 
-    // Consent
-    const consentHolder = qs(".field-check", form);
+    values.structure = stripTags(String(data.get("structure") || ""));
+    values.businessStage = stripTags(String(data.get("businessStage") || ""));
+    values.businessName = stripTags(String(data.get("businessName") || ""));
+
     const consentInvalid = !consent || !consent.checked;
     if (consentInvalid && !firstInvalid) firstInvalid = consent;
     if (consent) consent.setAttribute("aria-invalid", consentInvalid ? "true" : "false");
-    if (consentHolder) {
-      let indicator = qs(".consent-error", consentHolder);
-      if (consentInvalid) {
-        if (!indicator) {
-          indicator = document.createElement("p");
-          indicator.className = "field-hint consent-error";
-          indicator.textContent = "Please accept to continue.";
-          consentHolder.appendChild(indicator);
-        }
-      } else if (indicator) {
-        indicator.remove();
-      }
-    }
 
     if (firstInvalid) {
       firstInvalid.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -210,11 +204,7 @@
       return null;
     }
 
-    // Optional fields (trimmed; honeypot left raw)
-    values.structure = stripTags(String(data.get("structure") || ""));
-    values.businessStage = stripTags(String(data.get("businessStage") || ""));
-    values.businessName = stripTags(String(data.get("businessName") || ""));
-    values.consent = consentInvalid ? false : true;
+    values.consent = true;
     values.companyWebsite = String(data.get("companyWebsite") || ""); // honeypot
     return values;
   };
@@ -257,23 +247,27 @@
 
       if (!res.ok) {
         if (payload && payload.fields) {
+          const nameMap = { fullName: "fullName", mobile: "mobile", email: "email" };
           Object.entries(payload.fields).forEach(([name, msg]) => {
-            const input = qs(`[name="${name}"]`, form);
+            const input = qs(`[name="${nameMap[name] || name}"]`, form);
             if (input) setFieldError(input, msg);
           });
         }
         track("leadform_error", { reason: "server", status: res.status });
-        setStatus("error", (payload && payload.error) || "Something went wrong. Please try again.");
+        setStatus("error", errorBox, (payload && payload.error) || "Something went wrong. Please try again.");
         setLoading(false);
         return;
       }
 
       track("leadform_success", { id: payload && payload.id });
-      setStatus("success", "Thank you! We have received your enquiry and a consultant will get back to you shortly.");
       form.hidden = true;
+      if (successBox) {
+        successBox.hidden = false;
+        successBox.focus({ preventScroll: true });
+      }
     } catch (err) {
       track("leadform_error", { reason: "network" });
-      setStatus("error", "We could not reach our server. Please check your connection and try again.");
+      setStatus("error", errorBox, "We could not reach our server. Please check your connection and try again.");
       setLoading(false);
     }
   });

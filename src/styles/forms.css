@@ -9,40 +9,84 @@
   align-items: start;
 }
 
-.form-card {
+.contact-copy .lede {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 34rem;
+}
+
+.contact-reassure {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.contact-reassure li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contact-reassure li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 0.66rem;
+  line-height: 1rem;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 0.22rem;
+}
+
+.contact-panel {
   background: var(--surface-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   padding: clamp(1.5rem, 4vw, 2.25rem);
 }
 
-.lead-form {
-  display: grid;
-  gap: 1.15rem;
-}
-
-.field {
+/* Field rows --------------------------------------------------------------- */
+.form-row {
   display: grid;
   gap: 0.4rem;
+  margin-bottom: 1.05rem;
 }
 
-.field label {
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.05rem;
+}
+
+.form-row label {
   font-weight: 600;
   font-size: 0.95rem;
 }
 
-.field .optional {
+.form-row label .opt {
   font-weight: 400;
   color: var(--text-muted);
   font-size: 0.88rem;
 }
 
-.field input[type="text"],
-.field input[type="tel"],
-.field input[type="email"],
-.field select,
-.field textarea {
+.form-row input[type="text"],
+.form-row input[type="tel"],
+.form-row input[type="email"],
+.form-row select,
+.form-row textarea {
   font: inherit;
   color: var(--text-strong);
   padding: 0.8rem 0.95rem;
@@ -53,20 +97,24 @@
   transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 
-.field textarea {
+.form-row textarea {
   resize: vertical;
 }
 
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(2, 76, 181, 0.18);
 }
 
-.field input[aria-invalid="true"],
-.field textarea[aria-invalid="true"] {
+.form-row input[aria-invalid="true"],
+.form-row textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form-row select[aria-invalid="true"] {
   border-color: var(--color-danger);
 }
 
@@ -81,61 +129,83 @@
   display: none;
 }
 
-.field-check {
+.form-error {
+  margin: 0 0 0.4rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(194, 43, 23, 0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(194, 43, 23, 0.3);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+/* Consent ---------------------------------------------------------------- */
+.form-consent {
   display: flex;
   gap: 0.7rem;
   align-items: flex-start;
+  margin-top: 0.2rem;
 }
 
-.field-check input {
+.form-consent input {
   width: 1.2rem;
   height: 1.2rem;
   flex: none;
   margin-top: 0.15rem;
-  accent-color: var(--brand-orange-deep);
+  accent-color: var(--color-primary);
 }
 
-.field-check label {
+.form-consent label {
   font-weight: 400;
   font-size: 0.92rem;
   color: var(--text-body);
 }
 
-/* Honeypot: visually hidden but left in the DOM for bots */
-.hp-field {
-  position: absolute !important;
+.form-consent label a {
+  text-decoration: underline;
+}
+
+/* Honeypot: positioned off-screen but kept in the DOM for bots */
+.hp-wrap {
+  position: absolute;
+  left: -9999px;
+  top: auto;
   width: 1px;
   height: 1px;
   overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 .form-note {
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin: 0;
+  margin: 0.85rem 0 0;
   text-align: center;
 }
 
-.privacy-note {
+/* Contact alternate (direct channels, injected at build time) ------------------- */
+.contact-alternate {
   margin-top: 1.5rem;
-  padding: 1rem 1.1rem;
-  background: rgba(2, 76, 181, 0.06);
-  border-left: 3px solid var(--color-primary);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  font-size: 0.9rem;
-  color: var(--text-body);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.privacy-note p {
-  margin: 0;
+.contact-alternate p {
+  margin: 0 0 0.8rem;
+  font-size: 0.95rem;
 }
 
-.privacy-note strong {
-  color: var(--text-strong);
+.contact-alternate .direct-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
+/* Status ---------------------------------------------------------------------- */
 .form-status {
   margin-top: 1.1rem;
   border-radius: var(--radius-md);
@@ -151,6 +221,10 @@
   background: rgba(51, 155, 33, 0.12);
   color: var(--color-success);
   border: 1px solid rgba(51, 155, 33, 0.35);
+}
+
+.form-status.success p {
+  margin: 0;
 }
 
 .form-status.error {

@@ -72,7 +72,7 @@
   gap: 0.25rem;
 }
 
-.main-nav a {
+.main-nav ul a {
   display: block;
   padding: 0.6rem 0.7rem;
   color: var(--text-strong);
@@ -81,9 +81,9 @@
   border-radius: 8px;
 }
 
-.main-nav a:hover {
+.main-nav ul a:hover {
   color: var(--color-primary);
-  background: rgba(2, 76, 181, 0.07);
+  background: var(--brand-navy-soft);
   text-decoration: none;
 }
 
@@ -91,6 +91,7 @@
   display: inline-flex;
   padding: 0.7rem 1.2rem;
   min-height: 44px;
+  font-weight: 700;
 }
 
 /* Mobile toggle */

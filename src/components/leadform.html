@@ -1,104 +1,99 @@
-<!-- Contact / lead form -->
-<section class="section section-alt" id="contact">
+<!-- Lead form -->
+<section class="section section-dark" id="contact">
   <div class="container contact-grid">
     <div class="contact-copy">
-      <p class="eyebrow accent">Get started</p>
-      <h2>Schedule a Business &amp; Capital Diagnostic</h2>
-      <p class="section-lede">Share a few details and a consultant will reach out to understand where your business is today — and map the opportunities relevant to it: funding, grants, foundations, compliance and growth.</p>
-
-      <div class="steps-card">
-        <h3>What happens next</h3>
-        <ol class="next-steps">
-          <li><span>1</span> We review your enquiry.</li>
-          <li><span>2</span> A consultant reaches out during business hours.</li>
-          <li><span>3</span> You receive tailored recommendations and a clear next-steps checklist.</li>
-        </ol>
-      </div>
-
-      <p class="fine-print">Prefer to talk first? Request a call using the form and a consultant will get in touch.</p>
-
-      <div class="privacy-note">
-        <p><strong>Privacy-first handling.</strong> Your details are used only to respond to your enquiry — we do not sell them, and we handle them in line with applicable privacy law, including India&rsquo;s DPDP Act, 2023.</p>
-      </div>
+      <p class="eyebrow accent">Company registration &amp; business setup</p>
+      <h2>Ready to register your business?</h2>
+      <p class="lede">Share a few details and a registration advisor will get in touch during business hours to help you work out the right structure and the next step &mdash; wherever you are in the process.</p>
+      <ul class="contact-reassure">
+        <li>No obligation — a recommendation first, then your decision.</li>
+        <li>Your information is used only to respond to your enquiry.</li>
+      </ul>
     </div>
 
-    <div class="form-card">
-      <form id="enquiry-form" class="lead-form" novalidate>
-        <noscript>
-          <p class="form-error" role="alert">Please enable JavaScript to submit this form, or contact us via the details on the page.</p>
-        </noscript>
-
-        <div class="field">
-          <label for="f-fullname">Full name <span aria-hidden="true">*</span></label>
-          <input id="f-fullname" name="fullName" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-fullname-hint">
-          <p id="f-fullname-hint" class="field-hint" hidden></p>
+    <div class="contact-panel">
+      <form id="leadform" novalidate>
+        <div class="form-row">
+          <p id="leadform-error" class="form-error" role="alert" aria-live="assertive" hidden></p>
         </div>
 
-        <div class="field">
-          <label for="f-mobile">Mobile number <span aria-hidden="true">*</span></label>
-          <input id="f-mobile" name="mobile" type="tel" autocomplete="tel" required inputmode="tel" aria-describedby="f-mobile-hint">
-          <p id="f-mobile-hint" class="field-hint" hidden></p>
+        <div class="form-row">
+          <label for="full_name">Full name</label>
+          <input id="full_name" name="fullName" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="e.g. Ananya Sharma">
+          <p class="field-hint" id="full_name-hint" hidden></p>
         </div>
 
-        <div class="field">
-          <label for="f-email">Email address <span aria-hidden="true">*</span></label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint">
-          <p id="f-email-hint" class="field-hint" hidden></p>
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="mobile">Mobile number</label>
+            <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile">
+            <p class="field-hint" id="mobile-hint" hidden></p>
+          </div>
+          <div class="form-row">
+            <label for="email">Email <span class="opt">(optional)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="you@example.com">
+            <p class="field-hint" id="email-hint" hidden></p>
+          </div>
         </div>
 
-        <div class="field">
-          <label for="f-stage">Where is your business heading now?</label>
-          <select id="f-stage" name="businessStage">
-            <option value="">Select your stage…</option>
-            <option>Seed — early-stage idea or validation</option>
-            <option>Early — launched, gaining traction</option>
-            <option>Growth — scaling operations</option>
-            <option>Scale — established, institutional-ready</option>
-            <option>Not sure yet</option>
-          </select>
+        <div class="form-row">
+          <label for="businessName">Business name <span class="opt">(optional &mdash; working titles welcome)</span></label>
+          <input id="businessName" name="businessName" type="text" autocomplete="organization" maxlength="120" placeholder="e.g. FreshRoots Ventures">
         </div>
 
-        <div class="field">
-          <label for="f-structure">Entity structure (if any)</label>
-          <select id="f-structure" name="structure">
-            <option value="">Comparing / not sure yet</option>
-            <option>Private Limited Company</option>
-            <option>Limited Liability Partnership (LLP)</option>
-            <option>One Person Company (OPC)</option>
-            <option>Section 8 / Non-profit</option>
-            <option>Partnership Firm</option>
-            <option>Sole Proprietorship</option>
-            <option>Unregistered / not applicable</option>
-          </select>
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="businessStage">Where is your business today?</label>
+            <select id="businessStage" name="businessStage">
+              <option value="">Select a stage</option>
+              <option>Just an idea</option>
+              <option>Ready to start</option>
+              <option>Operating informally</option>
+              <option>Registered, needing guidance</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="structure">Entity you are considering</label>
+            <select id="structure" name="structure">
+              <option value="">Select if you have one</option>
+              <option>Private Limited Company</option>
+              <option>Limited Liability Partnership (LLP)</option>
+              <option>One Person Company (OPC)</option>
+              <option>Section 8 Company</option>
+              <option>Partnership Firm</option>
+              <option>Sole Proprietorship</option>
+              <option>Not sure</option>
+            </select>
+          </div>
         </div>
 
-        <div class="field">
-          <label for="f-business">Business / enterprise name <span class="optional">(optional)</span></label>
-          <input id="f-business" name="businessName" type="text" autocomplete="organization" maxlength="120">
+        <div class="form-row">
+          <label for="message">Anything else we should know? <span class="opt">(optional)</span></label>
+          <textarea id="message" name="message" rows="3" maxlength="600" placeholder="Business idea, timeline, questions…"></textarea>
         </div>
 
-        <div class="field">
-          <label for="f-message">What would you like to discuss? <span class="optional">(optional)</span></label>
-          <textarea id="f-message" name="message" rows="4" maxlength="2000" aria-describedby="f-message-hint"></textarea>
-          <p id="f-message-hint" class="field-hint" hidden></p>
+        <div class="form-row form-consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent">I agree to being contacted by ArthoVista about my enquiry. Your details are handled under India&rsquo;s DPDP Act and are never sold.</label>
         </div>
 
-        <!-- Honeypot (hidden from humans) -->
-        <div class="field hp-field" aria-hidden="true">
-          <label for="f-website">Company website</label>
-          <input id="f-website" name="companyWebsite" type="text" tabindex="-1" autocomplete="off">
-        </div>
+        <p class="hp-wrap" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="companyWebsite" type="text" tabindex="-1" autocomplete="off">
+        </p>
 
-        <div class="field field-check">
-          <input id="f-consent" name="consent" type="checkbox" required>
-          <label for="f-consent">I agree to be contacted about this enquiry. We use your details only to respond, and handle them in line with applicable privacy law. <span aria-hidden="true">*</span></label>
-        </div>
+        <button id="submit-btn" class="btn btn-accent btn-lg btn-block" type="submit" data-track="leadform_submit_btn">
+          Start Your Company Registration
+        </button>
+        <p class="form-note">A quick call to understand your business — no lengthy questionnaires.</p>
 
-        <button class="btn btn-accent btn-xl" type="submit" data-track="leadform_submit_btn">Request a Diagnostic</button>
-        <p class="form-note">Submitting indicates you agree to our contact and privacy handling described above.</p>
+        <div id="form-success" class="form-status success" hidden tabindex="-1">
+          <p>Thank you! We have received your enquiry and a registration advisor will get back to you shortly.</p>
+        </div>
       </form>
 
-      <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+      <div class="contact-alternate" id="contact-alternate">%%DIRECT_CONTACT%%</div>
     </div>
   </div>
 </section>

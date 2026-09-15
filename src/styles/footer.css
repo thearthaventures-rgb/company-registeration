@@ -3,34 +3,136 @@
    ========================================================================== */
 
 .site-footer {
-  background: var(--surface-inverse);
+  background:
+    radial-gradient(42rem 26rem at 112% -20%, rgba(3, 92, 201, 0.24), transparent 60%),
+    linear-gradient(180deg, #0A2A57, #0A2247);
   color: rgba(255, 255, 255, 0.85);
   margin-top: 0;
 }
 
-.footer-grid {
+/* Conversion strip ------------------------------------------------------------------ */
+.footer-cta {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+  padding-block: 3rem;
+}
+
+.footer-cta-copy {
+  max-width: 46rem;
+}
+
+.footer-cta-copy .eyebrow.bar {
+  color: #ffc9a3;
+}
+
+.footer-cta-copy .eyebrow.bar::before {
+  background: var(--brand-orange-bright);
+}
+
+.footer-cta-copy h2 {
+  color: #fff;
+  font-size: var(--display-2);
+  margin-bottom: 0.6rem;
+}
+
+.footer-cta-lede {
+  margin: 0;
+  font-size: var(--text-md);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-cta-actions {
+  flex: none;
+}
+
+/* Link grid ------------------------------------------------------------------------- */
+.footer-main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  padding: 3rem 0 2rem;
+  gap: 2.25rem;
+  padding-block: 3.25rem 2.5rem;
 }
 
-.footer-brand .brand {
+.footer-brand {
+  max-width: 22rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+}
+
+.footer-logo img {
+  border-radius: 10px;
+}
+
+.footer-lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.footer-lockup strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   color: #fff;
-  margin-bottom: 1rem;
 }
 
-.footer-brand p {
-  margin: 0;
+.footer-lockup span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.footer-tagline {
+  margin: 0 0 1.25rem;
   font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.72);
 }
 
-.footer-col h2 {
-  font-size: 0.8rem;
+.footer-assurances {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.footer-assurances li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-assurances li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--brand-orange);
+  transform: rotate(45deg);
+}
+
+.footer-col-title {
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #ffc9a3;
-  margin-bottom: 0.9rem;
+  margin: 0 0 1rem;
 }
 
 .footer-col ul {
@@ -38,11 +140,12 @@
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 .footer-col a {
   color: rgba(255, 255, 255, 0.85);
+  font-size: 0.94rem;
 }
 
 .footer-col a:hover {
@@ -50,34 +153,39 @@
   text-decoration: underline;
 }
 
-.footer-col p {
-  font-size: 0.93rem;
-  margin-bottom: 1rem;
+.footer-contact {
+  max-width: 18rem;
 }
 
-.footer-col .btn-outline {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.footer-col .btn-outline:hover {
-  background: #fff;
-  color: #0f1b33;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-block: 1.4rem;
-}
-
-.footer-bottom p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.footer-bottom .disclaimer {
+.footer-note {
+  margin: 1.1rem 0 0;
+  font-size: 0.86rem;
   color: rgba(255, 255, 255, 0.6);
-  margin-top: 0.4rem;
+}
+
+/* Bottom bar ------------------------------------------------------------------------ */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-block: 1.5rem;
+}
+
+.footer-legal {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.footer-legal p {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.footer-copyright {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-disclaimer {
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 64rem;
 }
 
 /* Direct contact buttons (rendered only when site.config.contact is set) */
@@ -93,15 +201,42 @@
 
 /* Presence (office locations) -------------------------------------------------------- */
 .presence {
-  list-style: none;
-  padding: 0;
-  margin: 1.2rem 0 0;
-  display: grid;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--text-body);
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-cream);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
 }
 
-.presence strong {
+.presence-label {
+  margin: 0 0 0.7rem;
+  font-weight: 700;
   color: var(--text-strong);
+  font-size: 0.95rem;
+}
+
+.presence ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.presence li {
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+
+.presence li span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }

@@ -16,26 +16,13 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .check-list-two {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .cta-band {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 
-  .estimate-inner {
-    grid-template-columns: 1.4fr 0.8fr;
-    align-items: end;
-  }
-
-  .process {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .doc-columns {
+  .form-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -57,78 +44,52 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .split {
-    grid-template-columns: 1fr 1fr;
+  .problem-grid,
+  .service-grid,
+  .scope-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contact-grid {
     grid-template-columns: 1fr 1.05fr;
   }
 
-  .footer-grid {
-    grid-template-columns: 2fr 1fr 1fr 1.2fr;
-  }
-
-  .process {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  #ecosystem .process,
-  #methodology .process {
-    grid-template-columns: repeat(3, 1fr);
+  .footer-main {
+    grid-template-columns: 1.6fr 1fr 1fr 1.1fr;
+    column-gap: 2.5rem;
   }
 
   .stat-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-
-  .stages {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .process-step {
-    padding: 1.6rem 1.4rem;
-  }
-
-  .step-num {
-    position: static;
-    display: block;
-    margin-bottom: 0.8rem;
-  }
 }
 
 @media (min-width: 1200px) {
-  .process {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  #ecosystem .process,
-  #methodology .process {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .stages {
-    grid-template-columns: repeat(4, 1fr);
+  .compare-scroller {
+    overflow: hidden;
   }
 }
 
 @media (max-width: 639px) {
-  .hero-visual {
-    max-width: 22rem;
+  .stat-grid {
+    grid-template-columns: 1fr;
   }
 
-  .chip {
-    display: none;
+  .hero-visual {
+    max-width: 22rem;
   }
 
   .hero-ctas .btn {
     width: 100%;
   }
 
-  .table-wrap {
-    margin-inline: -1rem;
-    border-radius: 0;
-    border-inline: 0;
+  .dossier-sheet-back {
+    transform: rotate(-1.5deg);
+    inset-inline: 0.8rem;
+  }
+
+  .dossier-sheet-mid {
+    transform: rotate(0.75deg);
+    inset-inline: 0.4rem 1.2rem;
   }
 }

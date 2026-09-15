@@ -1,8 +1,11 @@
 /* ==========================================================================
    Tokens — ArthoVista design system
-   Colors derived from the official ArthoVista logo (SVG fills):
-   orange #F75D01 / #FC7603, blue #024CB5 / #035DC9,
-   green #339B21 / #199124, cream / warm-white surfaces, deep blue ink.
+   Premium institutional B2B palette:
+   deep navy is the primary institutional color; orange is a controlled
+   strategic accent reserved for conversion. Warm/off-white surfaces and
+   neutral borders build editorial rhythm. Source colors derive from the
+   official ArthoVista logo: orange #F75D01, blue #024CB5/#035DC9,
+   green #339B21/#199124, deep navy ink.
    ========================================================================== */
 
 :root {
@@ -17,32 +20,37 @@
   --brand-green: #339B21;
   --brand-green-deep: #199124;
   --brand-teal: #078EA8;
-  --brand-cream: #FFF4D5;
-  --brand-cream-soft: #FEF3DF;
+
+  /* --- Institutional navy (primary) --- */
+  --brand-navy: #0A2A57;        /* deep navy — primary institutional surface */
+  --brand-navy-deep: #071F42;   /* hover / darker treatment */
+  --brand-navy-ink: #10233F;    /* text on light surfaces */
+  --brand-navy-soft: rgba(10, 42, 87, 0.06);
+  --brand-navy-line: rgba(10, 42, 87, 0.14);
 
   /* --- Semantic color roles --- */
-  --color-primary: var(--brand-blue);
-  --color-primary-hover: var(--brand-blue-deep);
-  --color-accent: var(--brand-orange-deep);
-  --color-accent-hover: #9C3E00;
+  --color-primary: var(--brand-navy);
+  --color-primary-hover: var(--brand-navy-deep);
+  --color-accent: var(--brand-orange); /* primary CTA orange */
+  --color-accent-hover: var(--brand-orange-deep);
   --color-success: var(--brand-green-deep);
   --color-danger: #C22B17;
-  --color-focus: var(--brand-blue);
+  --color-focus: var(--brand-navy);
 
   --text-strong: #14233C;
-  --text-body: #3D4A66;
-  --text-muted: #576280;
+  --text-body: #404A5E;
+  --text-muted: #5B6580;
   --text-inverse: #FFFFFF;
 
-  --surface-page: #FDFBF6;
+  --surface-page: #FFFFFF;
   --surface-card: #FFFFFF;
-  --surface-subtle: #F6F2EA;
-  --surface-cream: #FFF6E3;
-  --surface-inverse: #0F1B33;
+  --surface-subtle: #F4F6FA;    /* cool off-white rhythm surface */
+  --surface-cream: #FFF7EC;     /* warm accent surface */
+  --surface-inverse: #0A1E38;   /* deep navy feature section */
 
-  --border-subtle: #E7E1D6;
-  --border-strong: #C9C2B4;
-  --border-accent: #F3D9A8;
+  --border-subtle: #E7E9EE;     /* neutral, restrained */
+  --border-strong: #C6CDD8;
+  --border-accent: #F3DEC0;
 
   /* --- Typography scale (fluid) --- */
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -75,8 +83,10 @@
   --grid-gap: 1.25rem;
 
   /* --- Radii --- */
-  --radius-lg: 18px;
-  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --radius-btn: 8px; /* moderate — not pill */
   --radius-pill: 999px;
 
   /* --- Elevation --- */

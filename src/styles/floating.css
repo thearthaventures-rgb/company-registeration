@@ -15,13 +15,29 @@
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.85rem 1.2rem;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-btn);
+  box-shadow: var(--shadow-md);
 }
 
 .floating-cta:hover {
   background: var(--color-accent-hover);
   text-decoration: none;
+}
+
+.floating-cta:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Mobile: keep compact, clear of browser chrome and viewport edges */
+@media (max-width: 639px) {
+  .floating-cta {
+    right: 12px;
+    bottom: 12px;
+    padding: 0.7rem 1rem;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* Hide floating CTA on print to avoid ink bleed */

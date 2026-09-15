@@ -167,7 +167,7 @@ function validateEnquiry(body) {
   if (!MOBILE_RE.test(data.mobile)) {
     errors.mobile = "Please enter a valid mobile number.";
   }
-  if (!EMAIL_RE.test(data.email)) {
+  if (data.email && !EMAIL_RE.test(data.email)) {
     errors.email = "Please enter a valid email address.";
   }
   if (data.structure.length > 120) {
