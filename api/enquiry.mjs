@@ -2,16 +2,18 @@
  * Vercel serverless function for POST /api/enquiry.
  *
  * The static deployment (vercel.json → public/) cannot run `server.js`
- * (node:sqlite is not available on Vercel's static/edge runtimes). This
- * function restores the API in production by forwarding validated enquiry
- * payloads to a configured endpoint where leads are actually persisted
- * (company CRM, webhook, or a hosted database).
+ * (node:sqlite + long-lived process). This function restores the API in
+ * production by persisting validated leads to Supabase (PostgREST).
  *
  * Configuration (Vercel project environment variables):
- *   ENQUIRY_ENDPOINT   URL that accepts the lead JSON (e.g. a CRM webhook)
- *   ENQUIRY_TOKEN      optional bearer token sent to that endpoint
+ *   SUPABASE_URL             e.g. https://<project>.supabase.co
+ *   SUPABASE_SERVICE_KEY     server-side secret (never the anon/public key)
  *
- * Until ENQUIRY_ENDPOINT is set, this returns 501 with a clear message so
+ * Fallback (when Supabase is not configured):
+ *   ENQUIRY_ENDPOINT         URL that accepts the lead JSON (e.g. a webhook)
+ *   ENQUIRY_TOKEN            optional bearer token sent to that endpoint
+ *
+ * Until one of the above is set, this returns 501 with a clear message so
  * leads are never silently lost — the page shows the configured error to
  * the visitor instead of pretending success.
  */
@@ -68,6 +70,46 @@ export default async function handler(req) {
     return json(422, { ok: false, error: "Please correct the highlighted fields.", fields: errors });
   }
 
+  // Supabase (preferred) — direct PostgREST insert with the service key.
+  if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY) {
+    const endpoint = `${String(process.env.SUPABASE_URL).replace(/\/+$/, "")}/rest/v1/leads`;
+    try {
+      const upstream = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: process.env.SUPABASE_SERVICE_KEY,
+          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          full_name: data.fullName,
+          mobile: data.mobile,
+          email: data.email,
+          structure: data.structure,
+          business_stage: data.businessStage,
+          business_name: data.businessName,
+          message: data.message,
+          consent: data.consent,
+          source: "vercel-landing",
+          created_at: new Date().toISOString(),
+        }),
+      });
+      if (!upstream.ok) {
+        const detail = await upstream.text().catch(() => "");
+        console.error("Supabase insert failed:", upstream.status, detail.slice(0, 200));
+        return json(502, { ok: false, error: "Enquiry service is temporarily unavailable. Please try again." });
+      }
+      const created = await upstream.json().catch(() => [{ id: null }]);
+      const id = Array.isArray(created) && created[0] ? created[0].id : created?.id ?? "supabase";
+      return json(201, { ok: true, id });
+    } catch (err) {
+      console.error("Supabase insert error:", err);
+      return json(502, { ok: false, error: "Enquiry service is temporarily unavailable. Please try again." });
+    }
+  }
+
+  // Generic endpoint/webhook fallback.
   const endpoint = process.env.ENQUIRY_ENDPOINT;
   if (!endpoint) {
     return json(501, {

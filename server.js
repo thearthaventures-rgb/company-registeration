@@ -2,15 +2,17 @@
  * ArthoVista — zero-dependency static + API server.
  *
  * - Serves public/ (built by `npm run build`)
- * - POST /api/enquiry → validated → SQLite (node:sqlite) → 201
+ * - POST /api/enquiry → validated → leads store → 201
+ * - Leads store is Supabase (PostgREST) when SUPABASE_URL +
+ *   SUPABASE_SERVICE_KEY are configured, otherwise SQLite (node:sqlite).
  * - Security: rate limiting, honeypot, payload cap, security headers,
  *   directory-traversal protection, IP hashed before storage.
  *
- * Node >= 22.13 required for node:sqlite.
+ * Node >= 22.13 required for node:sqlite (fallback store only).
  */
 
 import http from "node:http";
-import { promises as fs } from "node:fs";
+import { promises as fs, readFileSync } from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { DatabaseSync } from "node:sqlite";
@@ -35,6 +37,25 @@ const MIME = {
 };
 
 const contentTypes = (ext) => MIME[ext] || "application/octet-stream";
+
+/* ---------- env ----------------------------------------------------------------- */
+/** Minimal .env loader (no dependency): loads every KEY=value into process.env. */
+function loadEnv() {
+  try {
+    const raw = readFileSync(path.join(__dirname, ".env"), "utf8");
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const idx = trimmed.indexOf("=");
+      if (idx === -1) continue;
+      const key = trimmed.slice(0, idx).trim();
+      let value = trimmed.slice(idx + 1).trim().replace(/^["']|["']$/g, "");
+      if (key && !(key in process.env)) process.env[key] = value;
+    }
+  } catch {
+    /* no .env file — env vars must come from the environment */
+  }
+}
 
 /* ---------- rate limiting ------------------------------------------------------ */
 function createRateLimiter({ windowMs = 10 * 60 * 1000, max = 12 } = {}) {
@@ -143,6 +164,50 @@ function createLeadStore(dataDir) {
   };
 }
 
+/**
+ * Stores enquiry leads in Supabase via the PostgREST API (no SDK needed).
+ * Requires SUPABASE_URL (https://<project>.supabase.co) and
+ * SUPABASE_SERVICE_KEY (a server-side secret — never the anon/public key,
+ * never shipped to the browser).
+ */
+function createSupabaseLeadStore({ url, serviceKey }) {
+  const endpoint = `${url.replace(/\/+$/, "")}/rest/v1/leads`;
+  return {
+    async insert(row) {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: serviceKey,
+          Authorization: `Bearer ${serviceKey}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          full_name: row.fullName,
+          mobile: row.mobile,
+          email: row.email,
+          structure: row.structure,
+          business_stage: row.businessStage,
+          business_name: row.businessName,
+          message: row.message,
+          consent: row.consent ? true : false,
+          source: row.source,
+          ip_hash: row.ipHash,
+          created_at: row.createdAt,
+        }),
+      });
+      if (!response.ok) {
+        const detail = await response.text().catch(() => "");
+        throw new Error(`Supabase ${response.status} ${detail.slice(0, 200)}`);
+      }
+      const created = await response.json().catch(() => ({ id: null }));
+      const id = Array.isArray(created) && created[0] ? created[0].id : created?.id ?? null;
+      return { id };
+    },
+    close() {},
+  };
+}
+
 /* ---------- validation --------------------------------------------------------- */
 const text = (val) => (typeof val === "string" ? val.trim() : "");
 const MOBILE_RE = /^[0-9+\-()\s]{8,16}$/;
@@ -236,7 +301,11 @@ async function serveStatic(req, res, root) {
 
 /* ---------- HTTP server --------------------------------------------------------- */
 export function startServer({ port = DEFAULT_PORT, root = path.join(__dirname, "public"), dataDir = path.join(__dirname, "data"), rate = {} } = {}) {
-  const store = createLeadStore(dataDir);
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const store = supabaseUrl && supabaseKey
+    ? createSupabaseLeadStore({ url: supabaseUrl, serviceKey: supabaseKey })
+    : createLeadStore(dataDir);
   const rateLimited = createRateLimiter(rate);
   const server = http.createServer(async (req, res) => {
     const method = req.method || "GET";
@@ -313,8 +382,10 @@ export function startServer({ port = DEFAULT_PORT, root = path.join(__dirname, "
 /* ---------- CLI ----------------------------------------------------------------- */
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (isMain) {
+  loadEnv();
   const server = startServer();
   server.listen(DEFAULT_PORT, () => {
-    console.log(`ArthoVista landing running at http://localhost:${DEFAULT_PORT}`);
+    const store = process.env.SUPABASE_URL ? "Supabase" : "SQLite";
+    console.log(`ArthoVista landing running at http://localhost:${DEFAULT_PORT} (leads → ${store})`);
   });
 }
